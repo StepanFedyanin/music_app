@@ -1,0 +1,139 @@
+.nav {
+	&__container {
+		width: 250px;
+		.nav__content {
+			width: 250px;
+			padding: 45px 20px;
+		}
+	}
+	&__content {
+		height: 100%;
+		width: 0;
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		background-color: #111;
+		overflow-x: hidden;
+		transition: 0.5s;
+		padding-top: 60px;
+	}
+	&__burger {
+		position: absolute;
+		top: 10px;
+		left: 25px;
+		width: 30px;
+		height: 21px;
+		transition: all 0.5s;
+		cursor: pointer;
+		span {
+			display: block;
+			position: absolute;
+			width: 100%;
+			height: 3px;
+			background-color: #0167ff;
+			top: 8.7px;
+			border-radius: 20px;
+		}
+		&::before,
+		&::after {
+			content: " ";
+			position: absolute;
+			width: 100%;
+			height: 3px;
+			background-color: #0167ff;
+			border-radius: 20px;
+		}
+		&::before {
+			transition: transform 0.5s;
+			top: 0;
+		}
+		&::after {
+			transition: transform 0.5s;
+			bottom: 0;
+		}
+		&.close {
+			width: 30px;
+			height: 30px;
+			left: auto;
+			right: 20px;
+			transition: all 0.5s;
+			span {
+				display: none;
+			}
+			&::before {
+				top: 13px;
+				transform: rotate(45deg);
+				transition: transform 0.5s;
+			}
+			&::after {
+				bottom: 13px;
+				transform: rotate(-45deg);
+				transition: transform 0.5s;
+			}
+		}
+	}
+	&__change {
+		display: none;
+		& + .nav__label,
+		+ .nav__label::before,
+		+ .nav__label::after {
+			transition: all 0.3s;
+		}
+		+ .nav__label {
+			display: inline-block;
+			position: relative;
+			width: 80px;
+			height: 30px;
+			border-radius: 30px;
+			background-color: #ccc;
+			cursor: pointer;
+			&::before {
+				display: block;
+				content: attr(data-offlabel);
+				position: absolute;
+				top: 4px;
+				right: 9px;
+				color: black;
+				font-family: "Open Sans", sans-serif;
+				font-size: 19px;
+			}
+			&::after {
+				border-radius: 50%;
+				content: "";
+				position: absolute;
+				top: 3px;
+				left: 9px;
+				width: 23px;
+				height: 23px;
+				background-color: white;
+			}
+		}
+		+ :checked .nav__label {
+			background-color: #0167ff;
+		}
+		&:checked + .nav__label::before {
+			content: attr(data-onlabel);
+			left: 16px;
+			right: auto;
+			color: #fff;
+		}
+		&:checked + .nav__label::after {
+			left: 50px;
+			background-color: #f7f7f7;
+		}
+		&:checked + .nav__label {
+			background-color: #0167ff;
+			&:before {
+				color: #fff;
+			}
+		}
+	}
+}
+.nav__logo {
+	width: 150px;
+}
+.nav__list {
+	padding-left: 0px;
+	transition: all 0.5s;
+}
